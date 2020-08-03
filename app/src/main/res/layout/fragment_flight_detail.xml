@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="flightViewModel"
+            type="com.sukhralia.flightsearch.flight.viewmodel.FlightViewModel" />
+    </data>
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="10dp"
+        tools:context=".flight.FlightDetailFragment">
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/flight_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/fare" />
+
+        <Button
+            android:id="@+id/fare"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
+            android:layout_marginEnd="10dp"
+            android:text="Fare"
+            app:layout_constraintEnd_toStartOf="@+id/departure_time"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/arrival_time"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Landing"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/departure_time"
+            app:layout_constraintTop_toTopOf="@+id/fare" />
+
+        <Button
+            android:id="@+id/departure_time"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="10dp"
+            android:text="Take Off"
+            app:layout_constraintEnd_toStartOf="@+id/arrival_time"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/fare"
+            app:layout_constraintTop_toTopOf="@+id/fare" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>
