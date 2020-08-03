@@ -11,6 +11,7 @@ import java.util.*
 
 class FlightViewModel : ViewModel(){
 
+    //Declared live data to observe immediate changes
     private val _response = MutableLiveData<String>()
     private val _flightResponse = MutableLiveData<FlightModel>()
 
@@ -20,14 +21,15 @@ class FlightViewModel : ViewModel(){
     val flightResponse : LiveData<FlightModel>
         get() = _flightResponse
 
+    //Declare coroutine job and scope for api calls
     private var viewModelJob = Job()
     private val coroutineScope = CoroutineScope(viewModelJob + Dispatchers.Main )
 
     init {
-        getMarsRealEstateProperties()
+        getFlights()
     }
 
-    private fun getMarsRealEstateProperties(){
+    private fun getFlights(){
 
         coroutineScope.launch {
             getResult()
@@ -36,10 +38,11 @@ class FlightViewModel : ViewModel(){
     }
 
     private suspend fun getResult(){
-        var getPropertiesDeferred = FlightApi.retrofitService.getProperties()
+        var getFlightsDeferred = FlightApi.retrofitService.getFlights()
 
         try {
-            var flightResult = getPropertiesDeferred.await()
+            //Await response from server and then assign to value
+            var flightResult = getFlightsDeferred.await()
             _response.value = "${flightResult.flights.size} flights retrieved"
             _flightResponse.value = flightResult
         }catch (t : Throwable){
@@ -47,6 +50,7 @@ class FlightViewModel : ViewModel(){
         }
     }
 
+    //Clear all finished jobs
     override fun onCleared() {
         super.onCleared()
         viewModelJob.cancel()

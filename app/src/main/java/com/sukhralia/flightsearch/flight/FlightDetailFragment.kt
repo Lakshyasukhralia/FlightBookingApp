@@ -21,6 +21,7 @@ import com.sukhralia.flightsearch.flight.viewmodel.FlightViewModel
 
 class FlightDetailFragment : Fragment() {
 
+    //Lazily intitialize viewmodel
     private val viewModel: FlightViewModel by lazy {
         ViewModelProviders.of(this).get(FlightViewModel::class.java)
     }
@@ -30,6 +31,7 @@ class FlightDetailFragment : Fragment() {
     private lateinit var airportMap: Map<String, String>
     private lateinit var providerMap: Map<String, String>
 
+    //For sorting purposes
     private var isFareLow = false
     private var isDeptLow = false
     private var isArrLow = false
@@ -48,15 +50,20 @@ class FlightDetailFragment : Fragment() {
             false
         )
 
+        //Attach viewmodel to UI
         binding.lifecycleOwner = this
         binding.flightViewModel = viewModel
 
+        //Observe response from server
         viewModel.response.observe(this, Observer { response ->
             Toast.makeText(context as MainActivity,response,Toast.LENGTH_SHORT).show()
         })
 
         binding.progressBar.visibility = View.VISIBLE
+
+        //Observe response from server
         viewModel.flightResponse.observe(this, Observer { response ->
+            //convert response to our custom model
             convertToAirline(response)
             binding.progressBar.visibility = View.GONE
         })
@@ -77,6 +84,7 @@ class FlightDetailFragment : Fragment() {
             airlineList = ArrayList()
 
             for (flight in flightList) {
+                //Add flights to list
                 for (i in 0 until flight.fares.size) {
                     val model = AirlineModel()
 
@@ -111,6 +119,7 @@ class FlightDetailFragment : Fragment() {
         binding.flightList.adapter = adapter
         adapter.data = airlineList
 
+        //Handle Fare Sorting
         binding.fare.setOnClickListener {
             when(isFareLow){
                 true -> {
@@ -126,6 +135,7 @@ class FlightDetailFragment : Fragment() {
             }
         }
 
+        //Handle Departure Time Sorting
         binding.departureTime.setOnClickListener {
 
             when(isDeptLow){
@@ -143,6 +153,7 @@ class FlightDetailFragment : Fragment() {
 
         }
 
+        //Handle Arrival Time Sorting
         binding.arrivalTime.setOnClickListener {
 
             when(isArrLow){

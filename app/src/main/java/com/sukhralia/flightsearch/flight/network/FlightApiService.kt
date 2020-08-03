@@ -22,7 +22,7 @@ private val retrofit = Retrofit.Builder()
 
 interface FlightApiService {
     @GET("5979c6731100001e039edcb3")
-    fun getProperties():
+    fun getFlights():
             Deferred<FlightModel>
 }
 

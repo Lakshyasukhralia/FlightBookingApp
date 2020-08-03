@@ -40,7 +40,7 @@ class SplashActivity : AppCompatActivity() {
 
     }
 
-
+    //Function for shuffling images
     fun changeImage() {
         Handler().postDelayed({
             if (i == len) {
