@@ -7,9 +7,11 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.sukhralia.flightsearch.R
-import com.sukhralia.flightsearch.flight.FlightDetailFragment
 import com.sukhralia.flightsearch.flight.model.AirlineModel
 import kotlinx.android.synthetic.main.flight_item.view.*
+
+private const val ECONOMY = "Economy"
+private const val BUSINESS = "Business"
 
 class FlightAdapter() : RecyclerView.Adapter<FlightAdapter.FlightViewHolder>() {
 
@@ -67,7 +69,17 @@ class FlightAdapter() : RecyclerView.Adapter<FlightAdapter.FlightViewHolder>() {
 
             origin.text = flight.origin
             destination.text = flight.destination
-            fare.text = flight.fare.toString()
+            fare.text = mContext.resources.getString(R.string.fare,flight.fare)
+            provider.text = flight.provider
+            airline.text = flight.airline
+            dTime.text = flight.departureTime
+            aTime.text = flight.arrivalTime
+            classType.text = flight.type
+
+            when(flight.type){
+                ECONOMY -> {classType.setTextColor(mContext.resources.getColor(R.color.royal_blue))}
+                BUSINESS -> {classType.setTextColor(mContext.resources.getColor(R.color.dark_orange))}
+            }
 
         }
 

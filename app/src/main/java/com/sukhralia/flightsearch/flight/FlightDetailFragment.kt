@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
@@ -29,6 +30,10 @@ class FlightDetailFragment : Fragment() {
     private lateinit var airportMap: Map<String, String>
     private lateinit var providerMap: Map<String, String>
 
+    private var isFareLow = false
+    private var isDeptLow = false
+    private var isArrLow = false
+
     private lateinit var binding: FragmentFlightDetailBinding
 
     override fun onCreateView(
@@ -46,8 +51,14 @@ class FlightDetailFragment : Fragment() {
         binding.lifecycleOwner = this
         binding.flightViewModel = viewModel
 
+        viewModel.response.observe(this, Observer { response ->
+            Toast.makeText(context as MainActivity,response,Toast.LENGTH_SHORT).show()
+        })
+
+        binding.progressBar.visibility = View.VISIBLE
         viewModel.flightResponse.observe(this, Observer { response ->
             convertToAirline(response)
+            binding.progressBar.visibility = View.GONE
         })
 
         return binding.root
@@ -101,15 +112,51 @@ class FlightDetailFragment : Fragment() {
         adapter.data = airlineList
 
         binding.fare.setOnClickListener {
-            adapter.data = airlineList.sortedWith(compareBy { it.fare })
+            when(isFareLow){
+                true -> {
+                    isFareLow = false
+                    Toast.makeText(context as MainActivity,"Fare : Low",Toast.LENGTH_SHORT).show()
+                    adapter.data = airlineList.sortedWith(compareBy { it.fare })
+                    binding.fare.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_up_arrow, 0)}
+                false -> {
+                    isFareLow = true
+                    Toast.makeText(context as MainActivity,"Fare : High",Toast.LENGTH_SHORT).show()
+                    adapter.data = airlineList.sortedWith(compareByDescending { it.fare })
+                    binding.fare.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_down_arrow, 0)}
+            }
         }
 
         binding.departureTime.setOnClickListener {
-            adapter.data = airlineList.sortedWith(compareBy { it.departureTime })
+
+            when(isDeptLow){
+                true -> {
+                    isDeptLow = false
+                    Toast.makeText(context as MainActivity,"Departure : Early",Toast.LENGTH_SHORT).show()
+                    adapter.data = airlineList.sortedWith(compareBy { it.departureTime })
+                    binding.departureTime.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_up_arrow, 0)}
+                false -> {
+                    isDeptLow = true
+                    Toast.makeText(context as MainActivity,"Departure : Late",Toast.LENGTH_SHORT).show()
+                    adapter.data = airlineList.sortedWith(compareByDescending { it.departureTime })
+                    binding.departureTime.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_down_arrow, 0)}
+            }
+
         }
 
         binding.arrivalTime.setOnClickListener {
-            adapter.data = airlineList.sortedWith(compareBy { it.arrivalTime })
+
+            when(isArrLow){
+                true -> {
+                    isArrLow = false
+                    Toast.makeText(context as MainActivity,"Arrival : Early",Toast.LENGTH_SHORT).show()
+                    adapter.data = airlineList.sortedWith(compareBy { it.arrivalTime })
+                    binding.arrivalTime.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_up_arrow, 0)}
+                false -> {
+                    isArrLow = true
+                    Toast.makeText(context as MainActivity,"Arrival : Late",Toast.LENGTH_SHORT).show()
+                    adapter.data = airlineList.sortedWith(compareByDescending { it.arrivalTime })
+                    binding.arrivalTime.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_down_arrow, 0)}
+            }
         }
 
     }

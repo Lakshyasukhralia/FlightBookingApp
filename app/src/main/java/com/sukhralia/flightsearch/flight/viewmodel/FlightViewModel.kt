@@ -40,7 +40,7 @@ class FlightViewModel : ViewModel(){
 
         try {
             var flightResult = getPropertiesDeferred.await()
-            _response.value = "Flights retrieved = ${flightResult.flights.size}"
+            _response.value = "${flightResult.flights.size} flights retrieved"
             _flightResponse.value = flightResult
         }catch (t : Throwable){
             _response.value = "Failure = ${t.message}"
