@@ -3,8 +3,9 @@ package com.sukhralia.flightsearch.flight.util
 import java.text.ParseException
 import java.text.SimpleDateFormat
 import java.util.*
+import java.util.concurrent.TimeUnit
 
-private const val DATE_FORMAT = "dd-MM-yy, hh:mm a"
+private const val DATE_FORMAT = "dd-MM-yy,\nhh:mm a"
 
 object AppUtils {
 
@@ -21,5 +22,16 @@ object AppUtils {
             e.printStackTrace()
         }
         return Date()
+    }
+
+    fun calculateDuration(start : String, end : String): String {
+
+        val timeDiffInMillis = stringToDate(end).time - stringToDate(start).time
+
+        return String.format(
+            "%d Hrs, %d Mins",
+            TimeUnit.MILLISECONDS.toSeconds(timeDiffInMillis) / (60 * 60),
+            TimeUnit.MILLISECONDS.toSeconds(timeDiffInMillis) % (60 * 60)
+        )
     }
 }

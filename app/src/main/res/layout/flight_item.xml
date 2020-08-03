@@ -85,8 +85,9 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="TextView"
-            app:layout_constraintEnd_toEndOf="@+id/dept_time"
-            app:layout_constraintStart_toStartOf="@+id/dept_time"
+            app:layout_constraintEnd_toStartOf="@+id/duration"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/a_time"
             tools:text="24-07-2020, 06:00 PM" />
 
@@ -97,8 +98,9 @@
             android:layout_marginTop="15dp"
             android:gravity="end"
             android:text="TextView"
-            app:layout_constraintEnd_toEndOf="@+id/arr_time"
-            app:layout_constraintStart_toStartOf="@+id/arr_time"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/duration"
             app:layout_constraintTop_toBottomOf="@+id/arrow_to"
             tools:text="24-07-2020, 06:00 PM" />
 
@@ -117,8 +119,8 @@
             android:id="@+id/airline"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="TextView"
             android:gravity="end"
+            android:text="TextView"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/class_type"
@@ -128,8 +130,8 @@
             android:id="@+id/class_type"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="TextView"
             android:gravity="center"
+            android:text="TextView"
             app:layout_constraintEnd_toStartOf="@+id/airline"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/provider"
@@ -139,16 +141,29 @@
             android:id="@+id/fare"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:includeFontPadding="false"
             android:layout_marginTop="10dp"
-            tools:text="Rs. 4200"
             android:background="@drawable/dotted_bg"
+            android:includeFontPadding="false"
             android:padding="4dp"
-            android:textStyle="bold"
             android:textColor="@color/lime_green"
+            android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/d_time" />
+            app:layout_constraintTop_toBottomOf="@+id/d_time"
+            tools:text="Rs. 4200" />
+
+        <TextView
+            android:id="@+id/duration"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            tools:text="8 Hrs 30 Mins"
+            android:gravity="center"
+            android:textColor="#000000"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toStartOf="@+id/a_time"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/d_time"
+            app:layout_constraintTop_toTopOf="@+id/d_time" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>

@@ -8,7 +8,11 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.sukhralia.flightsearch.R
 import com.sukhralia.flightsearch.flight.model.AirlineModel
+import com.sukhralia.flightsearch.flight.util.AppUtils
 import kotlinx.android.synthetic.main.flight_item.view.*
+import java.text.SimpleDateFormat
+import java.util.*
+import java.util.concurrent.TimeUnit
 
 private const val ECONOMY = "Economy"
 private const val BUSINESS = "Business"
@@ -64,6 +68,7 @@ class FlightAdapter() : RecyclerView.Adapter<FlightAdapter.FlightViewHolder>() {
         private val dTime: TextView = itemView.d_time
         private val aTime: TextView = itemView.a_time
         private val fare: TextView = itemView.fare
+        private val duration: TextView = itemView.duration
 
         fun bind(flight : AirlineModel) {
 
@@ -81,8 +86,9 @@ class FlightAdapter() : RecyclerView.Adapter<FlightAdapter.FlightViewHolder>() {
                 BUSINESS -> {classType.setTextColor(mContext.resources.getColor(R.color.dark_orange))}
             }
 
-        }
+            duration.text = AppUtils.calculateDuration(flight.departureTime, flight.arrivalTime)
 
+        }
 
     }
 
