@@ -24,6 +24,7 @@ object AppUtils {
         return Date()
     }
 
+    //Calculate total flight duration
     fun calculateDuration(start : String, end : String): String {
 
         val timeDiffInMillis = stringToDate(end).time - stringToDate(start).time
