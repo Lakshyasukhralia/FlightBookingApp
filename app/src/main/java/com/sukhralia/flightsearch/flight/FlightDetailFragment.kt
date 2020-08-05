@@ -1,16 +1,16 @@
 package com.sukhralia.flightsearch.flight
 
 import android.os.Bundle
-import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.sukhralia.flightsearch.R
 import com.sukhralia.flightsearch.databinding.FragmentFlightDetailBinding
 import com.sukhralia.flightsearch.flight.adapter.FlightAdapter
@@ -19,6 +19,7 @@ import com.sukhralia.flightsearch.flight.network.FlightModel
 import com.sukhralia.flightsearch.flight.util.AppUtils
 import com.sukhralia.flightsearch.flight.util.SimpleItemDecoration
 import com.sukhralia.flightsearch.flight.viewmodel.FlightViewModel
+
 
 class FlightDetailFragment : Fragment() {
 
@@ -115,6 +116,19 @@ class FlightDetailFragment : Fragment() {
         )
 
         binding.flightList.addItemDecoration(SimpleItemDecoration(context as MainActivity))
+
+//        binding.flightList.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+//            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+//                super.onScrolled(recyclerView, dx, dy)
+//                if (dy > 0 && binding.sortCl.visibility == View.VISIBLE) {
+//                    //Hide
+//                    binding.sortCl.visibility = View.GONE
+//                } else if (dy < 0 && binding.sortCl.visibility != View.VISIBLE) {
+//                    binding.sortCl.visibility = View.VISIBLE
+//                    //Show
+//                }
+//            }
+//        })
 
         val adapter = FlightAdapter()
         adapter.mContext = context as MainActivity
