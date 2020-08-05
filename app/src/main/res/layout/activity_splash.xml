@@ -15,7 +15,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:neomorph_background_color="@color/light_blue"
+        app:neomorph_background_color="@color/background"
         app:neomorph_corner_radius="10dp"
         app:neomorph_elevation="10dp"
         app:neomorph_highlight_color="@color/highlight"
