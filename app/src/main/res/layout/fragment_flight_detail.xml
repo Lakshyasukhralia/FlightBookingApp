@@ -11,77 +11,128 @@
     </data>
 
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_margin="5dp"
-        tools:context=".flight.FlightDetailFragment">
-
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/flight_list"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_marginTop="15dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/fare" />
+            android:layout_height="match_parent"
+            android:padding="10dp"
+            android:background="@color/background"
+            tools:context=".flight.FlightDetailFragment">
 
-        <Button
-            android:id="@+id/fare"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="2dp"
-            android:layout_marginTop="25dp"
-            android:layout_marginEnd="10dp"
-            android:background="@drawable/theme_button"
-            android:drawableRight="@drawable/ic_up_arrow"
-            android:padding="6dp"
-            android:text="Fare"
-            app:layout_constraintEnd_toStartOf="@+id/departure_time"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
 
-        <Button
-            android:id="@+id/arrival_time"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="2dp"
-            android:background="@drawable/theme_button"
-            android:drawableRight="@drawable/ic_up_arrow"
-            android:padding="6dp"
-            android:text="Landing"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/departure_time"
-            app:layout_constraintTop_toTopOf="@+id/fare" />
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/flight_list"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginTop="15dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/sort_cl" />
 
-        <Button
-            android:id="@+id/departure_time"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="10dp"
-            android:text="Take Off"
-            android:background="@drawable/theme_button"
-            android:padding="6dp"
-            android:drawableRight="@drawable/ic_up_arrow"
-            app:layout_constraintEnd_toStartOf="@+id/arrival_time"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/fare"
-            app:layout_constraintTop_toTopOf="@+id/fare" />
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/sort_cl"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
-        <ProgressBar
-            android:id="@+id/progressBar"
-            style="?android:attr/progressBarStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:visibility="gone"
-            app:layout_constraintBottom_toBottomOf="@+id/flight_list"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/flight_list" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+                <com.chinodev.androidneomorphframelayout.NeomorphFrameLayout
+                    android:id="@+id/neuormorph_layout"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    app:neomorph_background_color="@color/background"
+                    app:neomorph_corner_radius="10dp"
+                    app:neomorph_elevation="10dp"
+                    app:neomorph_highlight_color="@color/highlight"
+                    app:neomorph_shadow_color="@color/shadow_color"
+                    app:neomorph_shadow_type="outer"
+                    app:neomorph_view_type="rectangular"
+                    app:layout_constraintEnd_toStartOf="@+id/neuormorph_layout_2"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <Button
+                        android:id="@+id/fare"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="2dp"
+                        android:layout_marginEnd="10dp"
+                        android:background="@drawable/theme_button"
+                        android:drawableRight="@drawable/ic_up_arrow"
+                        android:ems="10"
+                        android:padding="6dp"
+                        android:text="Fare" />
+
+                </com.chinodev.androidneomorphframelayout.NeomorphFrameLayout>
+
+                <com.chinodev.androidneomorphframelayout.NeomorphFrameLayout
+                    android:id="@+id/neuormorph_layout_3"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    app:neomorph_background_color="@color/background"
+                    app:neomorph_corner_radius="10dp"
+                    app:neomorph_elevation="10dp"
+                    app:neomorph_highlight_color="@color/highlight"
+                    app:neomorph_shadow_color="@color/shadow_color"
+                    app:neomorph_shadow_type="outer"
+                    app:neomorph_view_type="rectangular"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/neuormorph_layout_2"
+                    app:layout_constraintTop_toTopOf="@+id/neuormorph_layout">
+
+                    <Button
+                        android:id="@+id/arrival_time"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="2dp"
+                        android:background="@drawable/theme_button"
+                        android:drawableRight="@drawable/ic_up_arrow"
+                        android:padding="6dp"
+                        android:text="ARVL" />
+                </com.chinodev.androidneomorphframelayout.NeomorphFrameLayout>
+
+                <com.chinodev.androidneomorphframelayout.NeomorphFrameLayout
+                    android:id="@+id/neuormorph_layout_2"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    app:neomorph_background_color="@color/background"
+                    app:neomorph_corner_radius="10dp"
+                    app:neomorph_elevation="10dp"
+                    app:neomorph_highlight_color="@color/highlight"
+                    app:neomorph_shadow_color="@color/shadow_color"
+                    app:neomorph_shadow_type="outer"
+                    app:neomorph_view_type="rectangular"
+                    app:layout_constraintEnd_toStartOf="@+id/neuormorph_layout_3"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/neuormorph_layout"
+                    app:layout_constraintTop_toTopOf="@+id/neuormorph_layout">
+
+                    <Button
+                        android:id="@+id/departure_time"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="10dp"
+                        android:background="@drawable/theme_button"
+                        android:drawableRight="@drawable/ic_up_arrow"
+                        android:padding="6dp"
+                        android:text="DEPT" />
+                </com.chinodev.androidneomorphframelayout.NeomorphFrameLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+            <ProgressBar
+                android:id="@+id/progressBar"
+                style="?android:attr/progressBarStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="@+id/flight_list"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/flight_list" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
 
 </layout>

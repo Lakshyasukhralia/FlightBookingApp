@@ -17,6 +17,7 @@ import com.sukhralia.flightsearch.flight.adapter.FlightAdapter
 import com.sukhralia.flightsearch.flight.model.AirlineModel
 import com.sukhralia.flightsearch.flight.network.FlightModel
 import com.sukhralia.flightsearch.flight.util.AppUtils
+import com.sukhralia.flightsearch.flight.util.SimpleItemDecoration
 import com.sukhralia.flightsearch.flight.viewmodel.FlightViewModel
 
 class FlightDetailFragment : Fragment() {
@@ -112,6 +113,8 @@ class FlightDetailFragment : Fragment() {
             context as MainActivity,
             LinearLayoutManager.VERTICAL, false
         )
+
+        binding.flightList.addItemDecoration(SimpleItemDecoration(context as MainActivity))
 
         val adapter = FlightAdapter()
         adapter.mContext = context as MainActivity
