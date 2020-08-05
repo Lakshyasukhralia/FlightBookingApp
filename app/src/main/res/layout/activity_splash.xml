@@ -15,7 +15,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:neomorph_background_color="@color/background"
+        app:neomorph_background_color="@color/light_blue"
         app:neomorph_corner_radius="10dp"
         app:neomorph_elevation="10dp"
         app:neomorph_highlight_color="@color/highlight"
@@ -23,13 +23,16 @@
         app:neomorph_shadow_type="outer"
         app:neomorph_view_type="rectangular">
 
-        <ImageView
-            android:id="@+id/logo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            android:scaleType="fitXY"
-            android:src="@drawable/ic_send" />
+            <ImageView
+                android:id="@+id/logo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:scaleType="fitXY"
+                android:background="@drawable/button_ripple"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
     </com.chinodev.androidneomorphframelayout.NeomorphFrameLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
