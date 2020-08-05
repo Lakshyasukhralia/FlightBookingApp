@@ -6,7 +6,7 @@
 
     <color name="background">#E1E6EC</color>
     <color name="highlight">#FFFFFF</color>
-    <color name="shadow_color">#D9DBDE</color>
+    <color name="shadow_color">#A9A9A9</color>
     <color name="dark">#31456A</color>
 
     <color name="lime_green">#32CD32</color>
