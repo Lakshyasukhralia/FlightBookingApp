@@ -2,6 +2,10 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
+Properties appUrlsProperties = new Properties()
+def propFile = rootProject.file('appurls.properties')
+appUrlsProperties.load(new FileInputStream(propFile))
+
 android {
     compileSdkVersion 29
 
@@ -11,6 +15,7 @@ android {
         targetSdkVersion 29
         versionCode 1
         versionName "1.0"
+        flavorDimensions "default"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -19,6 +24,13 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    productFlavors{
+
+        qa{
+            buildConfigField "String", "APP_BASE_URL", appUrlsProperties['APP_BASE_URL']
         }
     }
 

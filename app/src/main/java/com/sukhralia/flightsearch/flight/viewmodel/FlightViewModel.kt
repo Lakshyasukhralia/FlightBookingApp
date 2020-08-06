@@ -3,11 +3,11 @@ package com.sukhralia.flightsearch.flight.viewmodel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.sukhralia.flightsearch.BuildConfig
+import com.sukhralia.flightsearch.flight.constants.AppURLConstants
 import com.sukhralia.flightsearch.flight.network.FlightApi
 import com.sukhralia.flightsearch.flight.network.FlightModel
 import kotlinx.coroutines.*
-import java.text.SimpleDateFormat
-import java.util.*
 
 class FlightViewModel : ViewModel(){
 
@@ -38,7 +38,7 @@ class FlightViewModel : ViewModel(){
     }
 
     private suspend fun getResult(){
-        var getFlightsDeferred = FlightApi.retrofitService.getFlights()
+        var getFlightsDeferred = FlightApi.retrofitService.getFlightsAsync(AppURLConstants.FLIGHT_DATA_URL)
 
         try {
             //Await response from server and then assign to value
