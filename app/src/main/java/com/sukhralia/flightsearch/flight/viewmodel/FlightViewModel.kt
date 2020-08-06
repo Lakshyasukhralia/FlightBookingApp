@@ -3,7 +3,6 @@ package com.sukhralia.flightsearch.flight.viewmodel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.sukhralia.flightsearch.BuildConfig
 import com.sukhralia.flightsearch.flight.constants.AppURLConstants
 import com.sukhralia.flightsearch.flight.network.FlightApi
 import com.sukhralia.flightsearch.flight.network.FlightModel
