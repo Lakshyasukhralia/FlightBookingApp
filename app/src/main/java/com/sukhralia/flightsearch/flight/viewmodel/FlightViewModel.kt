@@ -1,5 +1,6 @@
 package com.sukhralia.flightsearch.flight.viewmodel
 
+import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -8,7 +9,7 @@ import com.sukhralia.flightsearch.flight.network.FlightApi
 import com.sukhralia.flightsearch.flight.network.FlightModel
 import kotlinx.coroutines.*
 
-class FlightViewModel : ViewModel(){
+class FlightViewModel @ViewModelInject constructor(): ViewModel(){
 
     //Declared live data to observe immediate changes
     private val _response = MutableLiveData<String>()

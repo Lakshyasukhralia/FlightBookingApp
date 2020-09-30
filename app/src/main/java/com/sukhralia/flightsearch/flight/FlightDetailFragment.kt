@@ -1,5 +1,6 @@
 package com.sukhralia.flightsearch.flight
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -7,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -23,10 +25,13 @@ import com.sukhralia.flightsearch.flight.viewmodel.FlightViewModel
 
 class FlightDetailFragment : Fragment() {
 
+    private val viewModel: FlightViewModel by viewModels()
+    private lateinit var mActivity: MainActivity
+
     //Lazily intitialize viewmodel
-    private val viewModel: FlightViewModel by lazy {
-        ViewModelProviders.of(this).get(FlightViewModel::class.java)
-    }
+//    private val viewModel: FlightViewModel by lazy {
+//        ViewModelProviders.of(this).get(FlightViewModel::class.java)
+//    }
 
     private lateinit var airlineList: ArrayList<AirlineModel>
     private lateinit var airlineMap: Map<String, String>
@@ -57,14 +62,14 @@ class FlightDetailFragment : Fragment() {
         binding.flightViewModel = viewModel
 
         //Observe response from server
-        viewModel.response.observe(this, Observer { response ->
+        viewModel.response.observe(mActivity, Observer { response ->
             Toast.makeText(context as MainActivity,response,Toast.LENGTH_SHORT).show()
         })
 
         binding.progressBar.visibility = View.VISIBLE
 
         //Observe response from server
-        viewModel.flightResponse.observe(this, Observer { response ->
+        viewModel.flightResponse.observe(mActivity, Observer { response ->
             //convert response to our custom model
             convertToAirline(response)
             binding.progressBar.visibility = View.GONE
@@ -131,7 +136,7 @@ class FlightDetailFragment : Fragment() {
 //        })
 
         val adapter = FlightAdapter()
-        adapter.mContext = context as MainActivity
+        adapter.mContext = mActivity
 
         binding.flightList.adapter = adapter
         adapter.data = airlineList
@@ -141,12 +146,12 @@ class FlightDetailFragment : Fragment() {
             when(isFareLow){
                 true -> {
                     isFareLow = false
-                    Toast.makeText(context as MainActivity,"Fare : Low",Toast.LENGTH_SHORT).show()
+                    Toast.makeText(mActivity,"Fare : Low",Toast.LENGTH_SHORT).show()
                     adapter.data = airlineList.sortedWith(compareBy { it.fare })
                     binding.fare.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_up_arrow, 0)}
                 false -> {
                     isFareLow = true
-                    Toast.makeText(context as MainActivity,"Fare : High",Toast.LENGTH_SHORT).show()
+                    Toast.makeText(mActivity,"Fare : High",Toast.LENGTH_SHORT).show()
                     adapter.data = airlineList.sortedWith(compareByDescending { it.fare })
                     binding.fare.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_down_arrow, 0)}
             }
@@ -158,12 +163,12 @@ class FlightDetailFragment : Fragment() {
             when(isDeptLow){
                 true -> {
                     isDeptLow = false
-                    Toast.makeText(context as MainActivity,"Departure : Early",Toast.LENGTH_SHORT).show()
+                    Toast.makeText(mActivity,"Departure : Early",Toast.LENGTH_SHORT).show()
                     adapter.data = airlineList.sortedWith(compareBy { it.departureTime })
                     binding.departureTime.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_up_arrow, 0)}
                 false -> {
                     isDeptLow = true
-                    Toast.makeText(context as MainActivity,"Departure : Late",Toast.LENGTH_SHORT).show()
+                    Toast.makeText(mActivity,"Departure : Late",Toast.LENGTH_SHORT).show()
                     adapter.data = airlineList.sortedWith(compareByDescending { it.departureTime })
                     binding.departureTime.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_down_arrow, 0)}
             }
@@ -176,17 +181,22 @@ class FlightDetailFragment : Fragment() {
             when(isArrLow){
                 true -> {
                     isArrLow = false
-                    Toast.makeText(context as MainActivity,"Arrival : Early",Toast.LENGTH_SHORT).show()
+                    Toast.makeText(mActivity,"Arrival : Early",Toast.LENGTH_SHORT).show()
                     adapter.data = airlineList.sortedWith(compareBy { it.arrivalTime })
                     binding.arrivalTime.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_up_arrow, 0)}
                 false -> {
                     isArrLow = true
-                    Toast.makeText(context as MainActivity,"Arrival : Late",Toast.LENGTH_SHORT).show()
+                    Toast.makeText(mActivity,"Arrival : Late",Toast.LENGTH_SHORT).show()
                     adapter.data = airlineList.sortedWith(compareByDescending { it.arrivalTime })
                     binding.arrivalTime.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_down_arrow, 0)}
             }
         }
 
+    }
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        mActivity = context as MainActivity
     }
 
 

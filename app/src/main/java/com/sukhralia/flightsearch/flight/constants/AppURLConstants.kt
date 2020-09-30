@@ -2,6 +2,6 @@ package com.sukhralia.flightsearch.flight.constants
 
 object AppURLConstants{
 
-    const val FLIGHT_DATA_URL = "5979c6731100001e039edcb3"
+    const val FLIGHT_DATA_URL = "ea94edac-6895-4f52-b8e3-0c3275b447d1"
 
 }

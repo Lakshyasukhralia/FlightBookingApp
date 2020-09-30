@@ -7,7 +7,9 @@ import com.sukhralia.flightsearch.BuildConfig
 import kotlinx.coroutines.Deferred
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
+import retrofit2.http.Body
 import retrofit2.http.GET
+import retrofit2.http.POST
 import retrofit2.http.Url
 
 private const val BASE_URL = BuildConfig.APP_BASE_URL
